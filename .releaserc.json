@@ -1,4 +1,6 @@
 {
   "extends": "@sanity/semantic-release-preset",
-  "branches": ["main"]
+  "branches": [
+    "master"
+  ]
 }
