@@ -2,6 +2,10 @@
 
 > This is a **Sanity Studio v3** plugin.
 
+> With this plugin you can check document references
+
+![Example](example.png 'Example')
+
 ## Installation
 
 ```sh

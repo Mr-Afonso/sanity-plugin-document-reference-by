@@ -8,11 +8,6 @@ const ReferencedBy = (props) => {
       {/* eslint-disable-next-line react/prop-types */}
       <WithReferringDocuments id={props.documentId}>
         {({referringDocuments, isLoading}) => {
-          // Optional: Read options from the schema to filter by a specific type
-          // const documents = referringDocuments.filter(
-          //   (doc) => doc.type === referenceType
-          // );
-
           if (isLoading) {
             return <div>Looking for referring documents...</div>
           }
