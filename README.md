@@ -10,16 +10,35 @@ npm install sanity-plugin-document-reference-by
 
 ## Usage
 
-Add it as a plugin in `sanity.config.ts` (or .js):
+Add it in `deskStructure.js`:
 
-```ts
+```js
 import {defineConfig} from 'sanity'
-import {myPlugin} from 'sanity-plugin-document-reference-by'
+import {ReferencedBy} from 'sanity-plugin-document-reference-by'
 
-export default defineConfig({
-  //...
-  plugins: [myPlugin({})],
-})
+export const defaultDocumentNodeResolver = (S) =>
+  S.document().views([S.view.form(), S.view.component(ReferencedBy).title('Referenced by')])
+```
+
+and at `sanity.config.js`:
+
+```js
+import { deskTool } from 'sanity/desk'
+import deskStructure, { defaultDocumentNodeResolver } from './deskStructure'
+
+export default defineConfig([
+  {
+    title: "title",
+    name: "name",
+    projectId: "projectId",
+    dataset: "dataset",
+    basePath: '/basePath',
+    plugins: [
+      deskTool({ structure: deskStructure, defaultDocumentNode: defaultDocumentNodeResolver }),
+    ],
+    ...
+  }
+])
 ```
 
 ## License
@@ -33,7 +52,6 @@ with default configuration for build & watch scripts.
 
 See [Testing a plugin in Sanity Studio](https://github.com/sanity-io/plugin-kit#testing-a-plugin-in-sanity-studio)
 on how to run this plugin with hotreload in the studio.
-
 
 ### Release new version
 
