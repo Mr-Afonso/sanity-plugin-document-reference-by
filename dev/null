@@ -1,0 +1,68 @@
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+
+// dist/index.js
+var require_dist = __commonJS({
+  "dist/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var jsxRuntime = require("react/jsx-runtime");
+    var sanity = require("sanity");
+    var ReferencedBy = (props) => {
+      return (
+        // eslint-disable-next-line react/jsx-filename-extension
+        /* @__PURE__ */ jsxRuntime.jsx("div", {
+          children: /* @__PURE__ */ jsxRuntime.jsx(sanity.WithReferringDocuments, {
+            id: props.documentId,
+            children: (_ref) => {
+              let {
+                referringDocuments,
+                isLoading
+              } = _ref;
+              if (isLoading) {
+                return /* @__PURE__ */ jsxRuntime.jsx("div", {
+                  children: "Looking for referring documents..."
+                });
+              }
+              if (!referringDocuments.length)
+                return null;
+              return /* @__PURE__ */ jsxRuntime.jsx("div", {
+                children: referringDocuments == null ? void 0 : referringDocuments.map((document) => {
+                  return /* @__PURE__ */ jsxRuntime.jsx("div", {
+                    children: /* @__PURE__ */ jsxRuntime.jsxs(sanity.IntentButton, {
+                      style: {
+                        margin: "4px 2px"
+                      },
+                      intent: "edit",
+                      params: {
+                        id: document._id,
+                        type: document._type
+                      },
+                      children: [/* @__PURE__ */ jsxRuntime.jsxs("div", {
+                        children: [/* @__PURE__ */ jsxRuntime.jsx("b", {
+                          children: "Document Type: "
+                        }), document._type]
+                      }), /* @__PURE__ */ jsxRuntime.jsxs("div", {
+                        children: [/* @__PURE__ */ jsxRuntime.jsx("b", {
+                          children: "Document Id: "
+                        }), document._id]
+                      })]
+                    })
+                  }, document._id);
+                })
+              });
+            }
+          })
+        })
+      );
+    };
+    exports.ReferencedBy = ReferencedBy;
+  }
+});
+
+// <stdin>
+require_dist();
