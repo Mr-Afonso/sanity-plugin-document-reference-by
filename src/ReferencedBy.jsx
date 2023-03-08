@@ -1,7 +1,9 @@
 import {WithReferringDocuments} from 'sanity'
-import {IntentButton} from 'sanity'
+import {IntentButton, Preview, useSchema} from 'sanity'
 
 const ReferencedBy = (props) => {
+  const schema = useSchema()
+
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <div>
@@ -17,24 +19,19 @@ const ReferencedBy = (props) => {
           return (
             <div>
               {referringDocuments?.map((document) => {
+                const schemaType = schema.get(document._type)
+
                 return (
                   <div key={document._id}>
-                    <IntentButton
-                      style={{
-                        margin: '4px 2px',
-                      }}
-                      intent="edit"
-                      params={{id: document._id, type: document._type}}
-                    >
+                    {schemaType ? (
+                      <IntentButton intent="edit" params={{id: document._id, type: document._type}}>
+                        <Preview value={document} type={schemaType} />
+                      </IntentButton>
+                    ) : (
                       <div>
-                        <b>Document Type: </b>
-                        {document._type}
+                        A document of the unknown type <em>{document._type}</em>
                       </div>
-                      <div>
-                        <b>Document Id: </b>
-                        {document._id}
-                      </div>
-                    </IntentButton>
+                    )}
                   </div>
                 )
               })}
