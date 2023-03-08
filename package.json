@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-document-reference-by",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Check for documents references",
   "keywords": [
     "sanity",
