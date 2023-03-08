@@ -13,6 +13,7 @@ var require_dist = __commonJS({
     var jsxRuntime = require("react/jsx-runtime");
     var sanity = require("sanity");
     var ReferencedBy = (props) => {
+      const schema = sanity.useSchema();
       return (
         // eslint-disable-next-line react/jsx-filename-extension
         /* @__PURE__ */ jsxRuntime.jsx("div", {
@@ -32,24 +33,21 @@ var require_dist = __commonJS({
                 return null;
               return /* @__PURE__ */ jsxRuntime.jsx("div", {
                 children: referringDocuments == null ? void 0 : referringDocuments.map((document) => {
+                  const schemaType = schema.get(document._type);
                   return /* @__PURE__ */ jsxRuntime.jsx("div", {
-                    children: /* @__PURE__ */ jsxRuntime.jsxs(sanity.IntentButton, {
-                      style: {
-                        margin: "4px 2px"
-                      },
+                    children: schemaType ? /* @__PURE__ */ jsxRuntime.jsx(sanity.IntentButton, {
                       intent: "edit",
                       params: {
                         id: document._id,
                         type: document._type
                       },
-                      children: [/* @__PURE__ */ jsxRuntime.jsxs("div", {
-                        children: [/* @__PURE__ */ jsxRuntime.jsx("b", {
-                          children: "Document Type: "
-                        }), document._type]
-                      }), /* @__PURE__ */ jsxRuntime.jsxs("div", {
-                        children: [/* @__PURE__ */ jsxRuntime.jsx("b", {
-                          children: "Document Id: "
-                        }), document._id]
+                      children: /* @__PURE__ */ jsxRuntime.jsx(sanity.Preview, {
+                        value: document,
+                        type: schemaType
+                      })
+                    }) : /* @__PURE__ */ jsxRuntime.jsxs("div", {
+                      children: ["A document of the unknown type ", /* @__PURE__ */ jsxRuntime.jsx("em", {
+                        children: document._type
                       })]
                     })
                   }, document._id);

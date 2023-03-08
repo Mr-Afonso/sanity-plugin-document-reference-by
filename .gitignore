@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+README-DEV.md
 
 # Runtime data
 pids

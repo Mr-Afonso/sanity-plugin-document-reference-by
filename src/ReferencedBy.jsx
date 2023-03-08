@@ -22,10 +22,10 @@ const ReferencedBy = (props) => {
                 const schemaType = schema.get(document._type)
 
                 return (
-                  <div key={document._id}>
+                  <div key={document._id} style={{padding: '5px 0px'}}>
                     {schemaType ? (
                       <IntentButton intent="edit" params={{id: document._id, type: document._type}}>
-                        <Preview value={document} type={schemaType} />
+                        <Preview value={document} schemaType={schemaType} />
                       </IntentButton>
                     ) : (
                       <div>
